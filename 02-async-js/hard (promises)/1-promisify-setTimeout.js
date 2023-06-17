@@ -3,4 +3,12 @@
 */
 
 function wait(n) {
+    return new Promise((resolve) => {
+        console.log("immediately logged");
+        setTimeout(resolve, n * 1000);
+    })
 }
+function resolve() {
+    console.log("resolved");
+}
+wait(5).then(resolve);

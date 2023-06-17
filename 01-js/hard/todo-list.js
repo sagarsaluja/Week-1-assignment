@@ -12,6 +12,38 @@
 */
 
 class Todo {
+  constructor() {
+    this.todos = {};
+    this.lastIndex = 0;
+  }
+  add(todo) {
+    this.todos[this.lastIndex] = todo;
+    this.lastIndex++;
+  }
+  remove(index) {
+    let i = index;
+    while (i < this.lastIndex) {
+      this.todos[i] = this.todos[i + 1];
+      i++;
+    }
+    delete this.todos[this.lastIndex];
+    this.lastIndex--;
+  }
+  update(index, updated) {
+    if (index >= this.lastIndex) return;
+    this.todos[index] = updated;
+  }
+  getAll() {
+    return Object.values(this.todos);
+  }
+  get(index) {
+    if (index >= this.lastIndex) return null;
+    return this.todos[index];
+  }
+  clear() {
+    this.todos = {};
+    this.lastIndex = 0;
+  }
 
 }
 

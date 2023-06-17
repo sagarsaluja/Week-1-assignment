@@ -17,6 +17,48 @@
   - `npm run test-calculator`
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0;
+    this.stack = [];
+  }
+  add(n) {
+    this.result += n;
+  }
+  subtract(n) {
+    this.result -= n;
 
+  }
+  multiply(n) {
+    this.result *= n;
+
+  }
+  divide(n) {
+    if (n === 0) throw new Error();
+    this.result /= n;
+
+  }
+  clear() {
+    this.result = 0;
+  }
+  getResult() {
+    return this.result;
+  }
+  calculate(ex) {
+    const exp = ex.replace(/\s/g, "");
+    if (exp.includes('/0')) throw new Error();
+    try {
+      const result = eval(exp);
+      this.result = result;
+    }
+    catch (err) {
+      throw new Error();
+    }
+  }
+}
+
+
+const c = new Calculator();
+
+c.calculate("");
 module.exports = Calculator;
